@@ -36,21 +36,25 @@ public class MainActivity extends Activity implements View.OnClickListener {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
             intent.putExtra("URL", "http://regis.kmutt.ac.th/service");
             startActivity(intent);
+            finish();
         }
         if (v == newacisButton) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
             intent.putExtra("URL", "https://sinfo.kmutt.ac.th/stdmobile/mobilePages/public/login.xhtml");
             startActivity(intent);
+            finish();
         }
         if (v == leb2Button) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
-            intent.putExtra("URL", "https://modps70.lib.kmutt.ac.th:50104/login?app_id=1&redirect_uri=https%3A%2F%2Fapp.leb2.kmutt.ac.th%2Flogin");
+            intent.putExtra("URL", "https://www.leb2.kmutt.ac.th");
             startActivity(intent);
+            finish();
         }
         if (v == dekButton) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
             intent.putExtra("URL", "https://m.facebook.com/WERKMUTT");
             startActivity(intent);
+            finish();
         }
     }
 }

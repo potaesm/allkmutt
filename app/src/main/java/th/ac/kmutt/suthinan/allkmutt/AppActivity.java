@@ -1,10 +1,13 @@
 package th.ac.kmutt.suthinan.allkmutt;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,22 +33,25 @@ public class AppActivity extends Activity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mWebview.canGoBack()) {
-                    mWebview.goBack();
-                } else {
-                    finish();
-                }
+                CookieManager cookieManager = CookieManager.getInstance();
+                cookieManager.setAcceptCookie(false);
+                Intent intent = new Intent(AppActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                onDestroy();
             }
         });
 
         reloadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mWebview.loadUrl("javascript:window.location.reload(true)");
+                mWebview.loadUrl(mWebview.getUrl());
+                //mWebview.loadUrl("javascript:window.location.reload(true)");
             }
         });
 
         mWebview = findViewById(R.id.webview);
+
 
         mWebview.getSettings().setJavaScriptEnabled(true);
         mWebview.loadUrl(url);
@@ -70,7 +76,10 @@ public class AppActivity extends Activity {
                     if (mWebview.canGoBack()) {
                         mWebview.goBack();
                     } else {
+                        Intent intent = new Intent(AppActivity.this, MainActivity.class);
+                        startActivity(intent);
                         finish();
+                        onDestroy();
                     }
                     return true;
             }
