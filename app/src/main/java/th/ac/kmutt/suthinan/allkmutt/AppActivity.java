@@ -75,13 +75,15 @@ public class AppActivity extends Activity {
         mWebview.setDownloadListener(new DownloadListener() {
             @Override
             public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype, long contentLength) {
+                final String fileName = URLUtil.guessFileName(url, contentDisposition, mimetype);
                 DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
                 request.allowScanningByMediaScanner();
                 request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "Downloaded Content");
+                request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
                 DownloadManager dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
                 dm.enqueue(request);
                 Toast.makeText(getApplicationContext(), "Downloading File", Toast.LENGTH_SHORT).show();
+                mWebview.goBack();
             }
         });
     }

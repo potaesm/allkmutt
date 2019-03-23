@@ -51,7 +51,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
         if (v == leb2Button) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
-            intent.putExtra("URL", "https://leb2.kmutt.ac.th");
+            intent.putExtra("URL", "https://modps70.lib.kmutt.ac.th:50104/login?app_id=1&redirect_uri=https%3A%2F%2Fapp.leb2.kmutt.ac.th%2Flogin");
             startActivity(intent);
             finish();
         }
