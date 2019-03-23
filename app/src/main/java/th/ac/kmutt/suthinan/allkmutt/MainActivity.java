@@ -2,6 +2,9 @@ package th.ac.kmutt.suthinan.allkmutt;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +14,8 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements View.OnClickListener {
 
     private LinearLayout registButton, newacisButton, leb2Button, dekButton;
+    PackageManager pm;
+    Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +45,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
         if (v == newacisButton) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
-            intent.putExtra("URL", "https://sinfo.kmutt.ac.th/stdmobile/mobilePages/public/login.xhtml");
+            intent.putExtra("URL", "https://sinfo.kmutt.ac.th/stdmobile");
             startActivity(intent);
             finish();
         }
         if (v == leb2Button) {
             Intent intent = new Intent(MainActivity.this, AppActivity.class);
-            intent.putExtra("URL", "https://www.leb2.kmutt.ac.th");
+            intent.putExtra("URL", "https://leb2.kmutt.ac.th");
             startActivity(intent);
             finish();
         }
